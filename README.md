@@ -1,2 +1,6 @@
 # cpp-restaurant
-CPP project for our studies
+
+## just a simple CPP project for an assignment
+
+nothing special here
+
