@@ -3,6 +3,8 @@
 #ifndef __RESTAURANT_H
 #define __RESTAURANT_H
 
+#define MAX_CAPACITY 250
+
 #include "Employee.h"
 #include "Table.h"
 #include "Shift.h"
