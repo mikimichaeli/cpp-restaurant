@@ -6,8 +6,11 @@
 #include "Cook.h"
 #include "Manager.h"
 
-class Chef : public Cook, Manager
+class Chef : public Cook, public Manager
 {
+public:
+	Chef();
+	virtual ostream& toOs(ostream& os) const override;
 };
 
 #endif // !__CHEF_H

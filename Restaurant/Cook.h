@@ -5,7 +5,7 @@
 
 #include "Employee.h"
 
-class Cook : public Employee
+class Cook : virtual public Employee
 {
 public:
 	Cook(const Employee& base);

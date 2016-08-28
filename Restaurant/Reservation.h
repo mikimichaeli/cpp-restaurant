@@ -4,16 +4,19 @@
 #define __RESERVATION_H
 
 #include "Area.h"
+#include "Table.h"
 
-class Reservation {
+class Reservation
+{
 	Person& maker;
+	Table& table;
 	int numOfPersons;
 	bool isSmoking;
 	Area area;
 
 public:
 	Reservation(const Person& maker, int numOfPersons, bool isSmoking, Area area);
-
+	void assignTable(const Table& table);
 };
 
 #endif // !__RESERVATION_H

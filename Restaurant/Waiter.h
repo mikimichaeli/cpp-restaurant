@@ -9,6 +9,7 @@ class Waiter : public Employee
 {
 public:
 	Waiter(const Employee& base);
+	virtual ostream& toOs(ostream& os) const override;
 };
 
 #endif // !__WAITER_H
