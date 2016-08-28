@@ -7,11 +7,12 @@
 
 class Table 
 {
+private:
 	static int ID_GENERATOR;
 	int id;
 	int size;
-	bool isInUse;
 	Area area;
+
 public:
 	Table(int size, Area area);
 };

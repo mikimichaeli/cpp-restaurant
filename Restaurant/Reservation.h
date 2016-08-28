@@ -17,6 +17,8 @@ class Reservation
 public:
 	Reservation(const Person& maker, int numOfPersons, bool isSmoking, Area area);
 	void assignTable(const Table& table);
+
+	Table& operator=(const Table& table) const;
 };
 
 #endif // !__RESERVATION_H

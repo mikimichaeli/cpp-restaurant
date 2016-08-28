@@ -10,11 +10,11 @@ class Order
 {
 	Employee& maker;
 	Table& table;
-	char* food;
-	char* drinks;
+	char** food;
+	char** drinks;
 
 public:
-	Order(const Employee& maker, const Table& table, char *food, char *drinks);
+	Order(const Employee& maker, const Table& table, char **food, char **drinks);
 	Order(const Order& other);
 	const Order& operator=(const Order& other);
 	~Order();
