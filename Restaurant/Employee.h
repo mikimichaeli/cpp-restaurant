@@ -16,7 +16,6 @@ public:
 	Employee(const Person& base, int seniority, int salary);
 	virtual ~Employee();
 	virtual ostream& toOs(ostream& os) const override;
-
 	void getPaid(ostream& os) const;
 };
 

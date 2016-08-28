@@ -11,7 +11,6 @@ class Table
 	int id;
 	int size;
 	Area area;
-
 public:
 	Table(int size, Area area);
 };
