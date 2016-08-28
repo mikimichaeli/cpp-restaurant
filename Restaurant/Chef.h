@@ -11,6 +11,7 @@ class Chef : public Cook, public Manager
 public:
 	Chef();
 	virtual ostream& toOs(ostream& os) const override;
+	void addSpecialDish(ostream& os);
 };
 
 #endif // !__CHEF_H

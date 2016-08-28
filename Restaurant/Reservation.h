@@ -18,7 +18,7 @@ public:
 	Reservation(const Person& maker, int numOfPersons, bool isSmoking, Area area);
 	void assignTable(const Table& table);
 
-	Table& operator=(const Table& table) const;
+	friend ostream& operator<<(ostream& os, const Reservation& res);
 };
 
 #endif // !__RESERVATION_H

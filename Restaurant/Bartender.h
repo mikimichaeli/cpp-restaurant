@@ -4,11 +4,14 @@
 #define __BARTENDER_H
 
 #include "Employee.h"
+#include "Order.h"
 
 class Bartender : public Employee
 {
 public:
-	Bartender(const Employee& base);
+	Bartender(const Employee& employee);
+	virtual ostream& toOs(ostream& os) const override;
+	void makeDrinks(const Order& order);
 };
 
 #endif // !__BARTENDER_H

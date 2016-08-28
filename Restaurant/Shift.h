@@ -8,13 +8,16 @@
 
 class Shift
 {
+	char *date;
 	Employee* employees;
 	Reservation* reservations;
 public:
-	Shift();
+	Shift(char *date);
 	Shift(const Shift& other);
 	const Shift& operator=(const Shift& other);
 	~Shift();
+
+	friend ostream& operator<<(ostream& os, const Shift& shift);
 	
 	// Employee array operators
 	const Shift& operator+=(Employee& e);
