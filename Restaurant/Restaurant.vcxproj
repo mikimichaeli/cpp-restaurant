@@ -113,10 +113,12 @@
     <ClInclude Include="Area.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Hostess.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Reservation.h" />
     <ClInclude Include="Restaurant.h" />
     <ClInclude Include="Shift.h" />
+    <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
