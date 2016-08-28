@@ -3,21 +3,22 @@
 #ifndef __RESTAURANT_H
 #define __RESTAURANT_H
 
-#define MAX_CAPACITY 250
-
 #include "Employee.h"
 #include "Table.h"
 #include "Shift.h"
 class Restaurant
 {
 private:
+
+	static const int MAX_CAPACITY = 250;
+
 	char *name;
 	char *addres;
 	char *phone;
-	int maxCapacity;
+	int currentCapacity;
 	Employee* employees;
 	Table* tables; 
-	Shift* shift;
+	Shift* shifts;
 
 public:
 	char* getName();

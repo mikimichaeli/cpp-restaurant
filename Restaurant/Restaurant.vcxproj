@@ -114,9 +114,11 @@
     <ClInclude Include="Bartender.h" />
     <ClInclude Include="Chef.h" />
     <ClInclude Include="Cook.h" />
+    <ClInclude Include="Dish.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Hostess.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Order.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Reservation.h" />

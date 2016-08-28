@@ -20,6 +20,7 @@ protected:
 public:
 	Person(char *name, char *address, char *phone, int age);
 	virtual ~Person();
+	virtual bool operator==(const Person& other);
 
 	friend ostream& operator<<(ostream& os, const Person& person);
 	virtual ostream& toOs(ostream& os) const;

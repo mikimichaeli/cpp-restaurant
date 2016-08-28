@@ -5,8 +5,6 @@
 
 #include "Area.h"
 #include "Order.h"
-#include <iostream>
-using namespace std;
 
 class Table 
 {
