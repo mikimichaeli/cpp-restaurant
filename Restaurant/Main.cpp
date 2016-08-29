@@ -9,6 +9,8 @@ int restaurantMenu();
 int currentShiftMenu();
 void handleATable(const Restaurant& res, const Waiter& waiter);
 int tableMenu();
+Employee *getEmployee();
+Person *getPerson();
 
 void main()
 {
@@ -32,22 +34,15 @@ void main()
 		switch (choice)
 		{
 		case 1:
-			int generalManagmentChoice = restaurantMenu();
-			switch (generalManagmentChoice) {
-			case 1:
-				break;
-			case 2:
-				break;
-			case 3:
-				break;
-			}
+
 			break;
 		case 2:
+			Waiter* temp = rand() % 2 == 0 ? waiter1 : waiter2;
 			int shiftManagmentChoice = currentShiftMenu();
 			switch (shiftManagmentChoice) {
 			case 1:
-				int waiter = rand() % 2;
-				handleATable(*r, waiter % 2 == 0 ? *waiter1 : *waiter2);
+				
+				handleATable(*r, *temp);
 				break;
 			case 2:
 				break;
@@ -57,6 +52,65 @@ void main()
 			break;
 		}
 	}
+}
+
+void handleManagmentChoice(const Restaurant& res)
+{
+	int generalManagmentChoice = restaurantMenu();
+	Employee* employee;
+	switch (generalManagmentChoice) 
+	{
+	case 1:
+		employee = getEmployee();
+		res += *employee;
+		break;
+	case 2:
+		// Current Shift Managment
+		break;
+	case 3:
+		break;
+	}
+}
+
+Employee *getEmployee()
+{
+	int salary;
+	Person *person = getPerson();
+	cout << " Enter the employees salary: " << endl;
+	cin >> salary;
+	return new Employee(*person, 0, salary);
+}
+
+Person *getPerson()
+{
+	char buffer[100];
+	char *name, *address, *phone;
+	int age;
+
+	cout << "What is the person's name? -->";
+	cin >> buffer;
+	name = strdup(buffer);
+
+	cout << "\n what is the person's addres? -->";
+	fflush(stdout);
+	cin >> buffer;
+	address = strdup(buffer);
+
+	cout << "\n what is the person's phone number? -->";
+	fflush(stdout);
+	cin >> buffer;
+	phone = strdup(buffer);
+
+	cout << "\n what is the person's age? -->";
+	cin >> age;
+	
+	Person *p = new Person(name, address, phone, age);
+	
+	free(name);
+	free(address);
+	free(phone);
+	
+	return p;
 }
 
 int mainMenu()

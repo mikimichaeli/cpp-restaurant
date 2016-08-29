@@ -5,6 +5,7 @@
 
 #include "Employee.h"
 #include "Dish.h"
+#include "Table.h"
 
 class Manager : virtual public Employee
 {

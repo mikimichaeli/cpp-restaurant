@@ -49,7 +49,7 @@ public:
 	void setTables(Table** tables);
 	void setShifts(Shift** shifts);
 
-		// Employee array operators
+	// Employee array operators
 	Restaurant& operator+=(const Employee& employee) const;
 	Restaurant& operator-=(const Employee& employee) const;
 
