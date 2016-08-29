@@ -16,7 +16,8 @@ public:
 	virtual ostream& toOs(ostream& os) const override;
 	void takeOrder(const Table& table) const;
 	void bringFood(const Table& table) const;
-	void takeMoney(const Table& table, int bill) const;
+	void bringBill(const Table& table) const;
+	void takeMoney(const Table& table) const;
 };
 
 #endif // !__WAITER_H

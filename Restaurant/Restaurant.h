@@ -3,9 +3,6 @@
 #ifndef __RESTAURANT_H
 #define __RESTAURANT_H
 
-#define MAX_TABLES_CAPACITY 40
-#define MAX_WORKERS 50
-#define MAX_SHIFTS 3650
 #include "Employee.h"
 #include "Manager.h"
 #include "Waiter.h"
@@ -18,13 +15,18 @@
 class Restaurant
 {
 private:
+	static const int MAX_TABLES_CAPACITY = 40;
+	static const int MAX_WORKERS = 50;
+	static const int MAX_SHIFTS = 3650;
+
 	char *name;
 	char *addres;
 	char *phone;
 	Manager restaurantManager;
-	Employee* employees[MAX_WORKERS];
-	Table* tables[MAX_TABLES_CAPACITY]; 
-	Shift* shifts[MAX_SHIFTS];
+	Employee** employees;
+	Table** tables; 
+	Shift** shifts;
+	int currentEmployees, currentShifts, currentTables;
 
 public:
 	Restaurant(char *name, char *adress, char *phone);
@@ -37,9 +39,12 @@ public:
 	char* getName() const { return this->name; }
 	char* getAddress() const { return this->addres; }
 	char* getPhone() const { return this->phone; }
-	Employee** getEmployees(){return this->employees;};
-	Table** getTables(){return this->tables;};
-	Shift** getShifts(){return this->shifts;};
+	Employee** getEmployees() const { return this->employees; };
+	Table** getTables() const { return this->tables; };
+	Shift** getShifts() const { return this->shifts; };
+	int getCurrentEmployeesAmount() const { return this->currentEmployees; }
+	int getCurrentShiftsAmount() const { return this->currentShifts; }
+	int getCurrentTablesAmount() const { return this->currentTables; }
 	void setEmployees(Employee** employees);
 	void setTables(Table** tables);
 	void setShifts(Shift** shifts);

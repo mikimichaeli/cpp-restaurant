@@ -18,6 +18,7 @@ class Table
 public:
 	Table(int size=4 , Area area=Area::Inside);
 	void addOrder(Order order);
+	int getBill() const;
 	~Table();
 	friend ostream& operator<<(ostream& os, const Table& table);
 };

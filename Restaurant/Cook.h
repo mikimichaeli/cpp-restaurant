@@ -10,6 +10,7 @@ class Cook : virtual public Employee
 {
 public:
 	Cook(const Employee& base);
+	virtual ~Cook();
 	virtual ostream& toOs(ostream& os) const override;
 	void makeFood(const Order& order) const;
 };
