@@ -14,6 +14,9 @@ protected:
 	const Employee& operator=(const Employee& other);
 public:
 	Employee(const Person& base, double seniority, int salary);
+	double getSeniority(){return this->seniority;};
+	int getSalary(){return this->salary;};
+
 	virtual ~Employee();
 	virtual ostream& toOs(ostream& os) const override;
 	void getPaid(ostream& os) const;

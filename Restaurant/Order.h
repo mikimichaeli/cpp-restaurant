@@ -16,8 +16,9 @@ public:
 	Order(const Order& other);
 	const Order& operator=(const Order& other);
 	~Order();
-
-	Order& operator+=(const Dish& dishes) const;
+	Employee& getMaker(){return this->maker;};
+	Dish* getDishes(){return this->dishes;};
+	Order& operator+=(const Dish& dishes) const;//add dish to order
 	friend ostream& operator<<(ostream& os, const Order& order);
 
 };

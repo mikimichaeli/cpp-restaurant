@@ -12,11 +12,10 @@ class Manager : virtual public Employee
 public:
 	Manager(const Employee& base);
 	void sendHome(const Employee& employee) const;
-	void indulgeTable(const Table& table, Dish indulge) const;
-	void cancelOrder(const Order& order) const;
+	void indulgeTable(Table& table, Dish indulge) ;
+	void cancelDish(Order& order) ;
 	void assignToTable(const Employee& e, const Table& t) const;
 	virtual ostream& toOs(ostream& os) const override;
-
 };
 
 #endif // !__EMPLOYEE_H

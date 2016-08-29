@@ -9,8 +9,13 @@ class Dish
 	int price;
 
 public:
-	Dish(char *name, int price);
+	Dish(char *name, int price=50);
 	Dish(const Dish& other);
+
+	char* getName(){return this->name;};
+	int getPrice() {return this->price;};
+	void setPrive(int price);
+	void setName(char* name);
 	const Dish& operator=(const Dish& other);
 	~Dish();
 
