@@ -10,7 +10,7 @@ class Shift
 {
 	char *date;
 	Employee shiftManager;
-	Employee* employees;
+	Employee** employees;
 	Reservation* reservations;
 public:
 	Shift(char *date);

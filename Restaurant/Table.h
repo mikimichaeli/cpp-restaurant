@@ -16,7 +16,7 @@ class Table
 	Order* orders;
 
 public:
-	Table(int size, Area area);
+	Table(int size=4 , Area area=Area::Inside);
 	void addOrder(Order order);
 	~Table();
 	friend ostream& operator<<(ostream& os, const Table& table);

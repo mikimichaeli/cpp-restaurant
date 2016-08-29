@@ -3,8 +3,9 @@
 #ifndef __RESTAURANT_H
 #define __RESTAURANT_H
 
-#define MAX_CAPACITY 250
-
+#define MAX_TABLES_CAPACITY 40
+#define MAX_WORKERS 50
+#define MAX_SHIFTS 3650
 #include "Employee.h"
 #include "Manager.h"
 #include "Waiter.h"
@@ -21,9 +22,9 @@ private:
 	char *addres;
 	char *phone;
 	Manager restaurantManager;
-	Employee* employees;
-	Table* tables; 
-	Shift* shifts;
+	Employee* employees[MAX_WORKERS];
+	Table* tables[MAX_TABLES_CAPACITY]; 
+	Shift* shifts[MAX_SHIFTS];
 
 public:
 	Restaurant(char *name, char *adress, char *phone);
@@ -32,12 +33,16 @@ public:
 	void addTable(Table& table);
 	void removeTable(Table& table);
 	void addShift(Shift& shift);
+
 	char* getName() const { return this->name; }
 	char* getAddress() const { return this->addres; }
 	char* getPhone() const { return this->phone; }
-	Employee* getEmployees(){return this->employees;};
-	Table* getTables(){return this->tables;};
-	Shift* getShifts(){return this->shifts;};
+	Employee** getEmployees(){return this->employees;};
+	Table** getTables(){return this->tables;};
+	Shift** getShifts(){return this->shifts;};
+	void setEmployees(Employee** employees);
+	void setTables(Table** tables);
+	void setShifts(Shift** shifts);
 
 		// Employee array operators
 	Restaurant& operator+=(const Employee& employee) const;
