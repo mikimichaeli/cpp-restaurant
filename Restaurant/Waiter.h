@@ -14,9 +14,9 @@ class Waiter : public Employee
 public:
 	Waiter(const Employee& base);
 	virtual ostream& toOs(ostream& os) const override;
-	void takeOrder(const Table& other) const;
-	void bringFood(const Table& other) const;
-	void takeMoney(const Table& other, int bill) const;
+	void takeOrder(const Table& table) const;
+	void bringFood(const Table& table) const;
+	void takeMoney(const Table& table, int bill) const;
 };
 
 #endif // !__WAITER_H

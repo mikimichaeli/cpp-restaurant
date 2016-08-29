@@ -22,17 +22,6 @@ public:
 	// remove dish, throw error if no items
 	const Dish& operator-=(const Dish& dish) throw (const char*);
 
-	// add to end of the dishes list with prefix operator
-	const Dish& operator++();
-	// add to end of the dishes list with postfix operator
-	Dish operator++(int);
-
-	// remove last item in the dishes list with prefix operator
-	const Dish& operator--();
-	// remove last item in the dishes list with post operator
-	Dish operator--(int);
-
-
 	int getCapacity() const { return this->currentCapacity; }
 
 };

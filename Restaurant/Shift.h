@@ -9,6 +9,7 @@
 class Shift
 {
 	char *date;
+	Employee shiftManager;
 	Employee* employees;
 	Reservation* reservations;
 public:

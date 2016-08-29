@@ -9,7 +9,7 @@
 class Chef : public Cook, public Manager
 {
 public:
-	Chef();
+	Chef(const Employee&);
 	virtual ostream& toOs(ostream& os) const override;
 	void addSpecialDish(ostream& os);
 };

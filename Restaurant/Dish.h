@@ -13,6 +13,7 @@ public:
 	Dish(const Dish& other);
 	const Dish& operator=(const Dish& other);
 	~Dish();
+
 };
 
 #endif // !__DISH_H
