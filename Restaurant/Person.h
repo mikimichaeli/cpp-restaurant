@@ -29,5 +29,9 @@ public:
 	char* getAddress() const { return this->addres; }
 	char* getPhone() const { return this->phone; }
 	int getAge() const { return this->age; }
+	void setName(char* name);
+	void setAddress(char* address);
+	void setPhone(char* phone);
+	void setAge(int age);
 };
 #endif // !__PERSON_H

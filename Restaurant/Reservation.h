@@ -18,6 +18,16 @@ public:
 	Reservation(const Person& maker, int numOfPersons, bool isSmoking, Area area);
 	void assignTable(const Table& table);
 
+	Person& getMaker(){return this->maker;};
+	Table& getTable(){return this->table;};
+	void setTable(const Table& table);
+	int getNumOfPersons(){return this->numOfPersons;};
+	void setNumOfPersons(int numOfPersons);
+	bool getIsSmoking(){return this->isSmoking;};
+	void setIsSmoking(bool IsSmoking);
+	Area getArea(){return this->area;};
+	void setArea(Area area);
+
 	friend ostream& operator<<(ostream& os, const Reservation& res);
 };
 
