@@ -12,13 +12,13 @@ int tableMenu();
 Employee *getEmployee();
 Person *getPerson();
 void handleManagmentChoice(Restaurant& res);
-void handleShiftChoice(const Restaurant& res, const Waiter& waiter);
+void handleShiftChoice(const Restaurant& res);
 void addEmployeeToShift(const Restaurant& res);
 
 void main()
 {
-	Restaurant* r = new Restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666");
-	Menu restaurantMenu = r->getMenu();
+	Restaurant* restaurant = new Restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666");
+	Menu restaurantMenu = restaurant->getMenu();
 	restaurantMenu += Dish("Soup",30);
 	restaurantMenu += Dish("Pasta");
 	restaurantMenu += Dish("Steak");
@@ -26,19 +26,13 @@ void main()
 	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312", 35), 15000, 5));
 	Cook* cook1 = new Cook(*restaurantManager);
 	Chef* chef = new Chef(*cook1, *restaurantManager);
-	*r += *chef;
-	*r += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123", 35), 3500, 2));
-	*r += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112", 25), 5000, 0.5));
-	Waiter* waiter2 = new Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696", 25), 5000, 1.2));
+	*restaurant += *chef;
+	*restaurant += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123", 35), 3500, 2));
+	*restaurant += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112", 25), 5000, 0.5));
+	*restaurant += Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696", 25), 5000, 1.2));
+	*restaurant += Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981", 39), 3500, 2));
+	*restaurant += Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121", 35), 3500, 2));
 
-	Cook* cook2 = new Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981", 39), 3500, 2));
-	Hostess* hostess1 = new Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121", 35), 3500, 2));
-	Table* tables = new Table[10];
-	Employee* allEmployees[] = {restaurantManager, shiftManager, waiter1, waiter2, cook1, cook2, hostess1, chef};
-
-	
-	r->setEmployees(allEmployees);
-	r->setTables(&tables);
 	int choice = 0;
 	while(choice!=3)
 	{
@@ -46,11 +40,10 @@ void main()
 		switch (choice)
 		{
 		case 1:
-			handleManagmentChoice(*r);
+			handleManagmentChoice(*restaurant);
 			break;
 		case 2:
-			Waiter* temp = rand() % 2 == 0 ? waiter1 : waiter2; // need to change this shit :(
-			handleShiftChoice(*r, *temp);
+			handleShiftChoice(*restaurant);
 			break;
 		}
 	}
@@ -101,7 +94,7 @@ int generalRestaurantMenu()
 	return choice;
 }
 
-void handleShiftChoice(const Restaurant& res, const Waiter& waiter)
+void handleShiftChoice(const Restaurant& res)
 {
 	int shiftManagmentChoice = 0;
 	while (shiftManagmentChoice != 4)
@@ -112,10 +105,10 @@ void handleShiftChoice(const Restaurant& res, const Waiter& waiter)
 			addEmployeeToShift(res);
 			break;
 		case 2:
-			//take reservation
+			takeNewReservation(res);
 			break;
 		case 3:
-			handleATable(res, waiter);
+			handleATable(res);
 			break;
 		}
 	}
@@ -168,6 +161,9 @@ int currentShiftMenu()
 	cin >> choice;
 	return choice;
 }
+void takeNewReservation(const Restaurant& res) {
+
+}
 void addEmployeeToShift(const Restaurant& res)
 {
 	Shift& s = res.getCurrentShift();
@@ -184,7 +180,7 @@ void addEmployeeToShift(const Restaurant& res)
 	s.addEmployee(*employees[employeeNum - 1]);
 }
 
-void handleATable(const Restaurant& res, const Waiter& waiter)
+void handleATable(const Restaurant& res)
 {
 	Shift& shift = res.getCurrentShift();
 	cout << " Please choose which table you want to handle: " << endl;
@@ -197,7 +193,6 @@ void handleATable(const Restaurant& res, const Waiter& waiter)
 	}
 	int tableNum;
 	cin >> tableNum;
-
 	cout << "You chose table #" << tableNum << ". what do you want to do with it? " << endl;
 	Table& table = *tables[tableNum - 1];
 	int action = 0;
@@ -206,16 +201,16 @@ void handleATable(const Restaurant& res, const Waiter& waiter)
 			Menu menu;
 			switch (action) {
 			case 1:
-				table += waiter.takeOrder(table);
+				table += shift.getFreeWaiter()->takeOrder(table);
 				break;
 			case 2:
-				waiter.bringFood(table);
+				shift.getFreeWaiter()->bringFood(table);
 				break;
 			case 3:
-				waiter.bringBill(table);
+				shift.getFreeWaiter()->bringBill(table);
 				break;
 			case 4:
-				waiter.takeMoney(table);
+				shift.getFreeWaiter()->takeMoney(table);
 				break;
 			case 5:
 				menu = res.getMenu();

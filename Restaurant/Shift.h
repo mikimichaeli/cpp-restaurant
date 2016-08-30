@@ -37,7 +37,7 @@ public:
 	Cook** getAllCooks();
 	Hostess** getAllHostesses();
 	Manager** getAllManagers();
-
+	Waiter* getFreeWaiter();
 	// reservations array operator
 	const Shift& operator+=(Reservation& e);
 	const Shift& operator-=(Reservation& e);
