@@ -9,9 +9,9 @@
 class Shift
 {
 	char *date;
-	Manager& shiftManager;
+	Manager* shiftManager;
 	Employee** employees;
-	Reservation** reservations;
+	Reservation* reservations;
 public:
 	Shift(char *date);
 	Shift(const Shift& other);
@@ -22,10 +22,10 @@ public:
 
 	char* getDate() {return this->date;};
 	void setDate(char* date);
-	Manager& getShiftManager() { return this->shiftManager; };
+	Manager* getShiftManager() { return this->shiftManager; };
 	void setShiftManager(Manager manager);
 	Employee** getEmployees() {	return this->employees; };
-	Reservation** getReservations() { return this->reservations; };
+	Reservation* getReservations() { return this->reservations; };
 
 	friend ostream& operator<<(ostream& os, const Shift& shift);
 	// Employee array operators

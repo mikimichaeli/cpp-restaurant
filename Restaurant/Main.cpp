@@ -14,6 +14,8 @@ Person *getPerson();
 void handleManagmentChoice(Restaurant& res);
 void handleShiftChoice(const Restaurant& res);
 void addEmployeeToShift(const Restaurant& res);
+void takeNewReservation(const Restaurant& res);
+void handleATable(const Restaurant& res);
 
 void main()
 {
@@ -75,7 +77,7 @@ void handleManagmentChoice(Restaurant& res)
 			res += *employee;
 			break;
 		case 2:
-			// add new table
+			
 			break;
 		case 3:
 			// start new shift
@@ -83,6 +85,7 @@ void handleManagmentChoice(Restaurant& res)
 		}
 	}
 }
+
 int generalRestaurantMenu()
 {
 	int choice;
@@ -161,7 +164,8 @@ int currentShiftMenu()
 	cin >> choice;
 	return choice;
 }
-void takeNewReservation(const Restaurant& res) {
+void takeNewReservation(const Restaurant& res)
+{
 
 }
 void addEmployeeToShift(const Restaurant& res)
@@ -219,7 +223,7 @@ void handleATable(const Restaurant& res)
 					cout << i + 1 << ". " << menu[i] << endl;
 				}
 				cin >> action;
-				shift.getShiftManager().indulgeTable(table, menu[action - 1]);
+				shift.getShiftManager()->indulgeTable(table, menu[action - 1]);
 				break;
 			default:
 				cout << " Incorrect choice. going back to main menu." << endl;
