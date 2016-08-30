@@ -86,6 +86,28 @@ void handleManagmentChoice(Restaurant& res)
 	}
 }
 
+void startNewShift(Restaurant& res)
+{
+	char buffer[100], *date;
+	cout << " enter shift date -->";
+	cin >> buffer;
+	date = strdup(buffer);
+	Shift* shift = new Shift(date);
+	Employee** employees = res.getEmployees();
+	int choice = 1;
+	cout << " choose an employee to add to the shift." << endl;
+	for (int i = 0; i < res.getCurrentEmployeesAmount(); i++)
+		cout << i + 1 << ". " << *employees[i] << endl;
+
+	cin >> choice;
+	shift->addEmployee(*employees[choice - 1]);
+	fflush(stdout);
+	
+	shift->setShiftManager(res.getRestaurantManager());
+
+	res += *shift;
+}
+
 int generalRestaurantMenu()
 {
 	int choice;
