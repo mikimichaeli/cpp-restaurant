@@ -9,26 +9,34 @@
 class Shift
 {
 	char *date;
-	Employee shiftManager;
+	Manager& shiftManager;
 	Employee** employees;
-	Reservation* reservations;
+	Reservation** reservations;
 public:
 	Shift(char *date);
 	Shift(const Shift& other);
 	const Shift& operator=(const Shift& other);
 	~Shift();
 
+	bool isInShift(const Employee& employee) const;
+
+	char* getDate() {return this->date;};
+	void setDate(char* date);
+	Manager& getShiftManager() { return this->shiftManager; };
+	void setShiftManager(Manager manager);
+	Employee** getEmployees() {	return this->employees; };
+	Reservation** getReservations() { return this->reservations; };
+
 	friend ostream& operator<<(ostream& os, const Shift& shift);
-	
 	// Employee array operators
-	const Shift& operator+=(Employee& e);
+	const Shift& operator+=(Employee& e);//validate that the employee is not allready in shift;
 	const Shift& operator-=(Employee& e);
 	const Employee& operator[](int index);
 
 	// reservations array operator
 	const Shift& operator+=(Reservation& e);
 	const Shift& operator-=(Reservation& e);
-
+	
 	void addEmployee(Employee& e);
 	void removeEmployee(Employee& e);
 

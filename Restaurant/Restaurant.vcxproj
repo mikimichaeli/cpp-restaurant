@@ -111,7 +111,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Area.h" />
-    <ClInclude Include="Bartender.h" />
     <ClInclude Include="Chef.h" />
     <ClInclude Include="Cook.h" />
     <ClInclude Include="Dish.h" />

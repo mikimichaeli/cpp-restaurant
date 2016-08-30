@@ -30,6 +30,7 @@ public:
 	void addOrder(Order order);
 	int getBill() const;
 	~Table();
+	Table operator+=(const Order& order) const;
 	friend ostream& operator<<(ostream& os, const Table& table);
 	
 };

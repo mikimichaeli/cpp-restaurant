@@ -11,6 +11,7 @@
 #include "Chef.h"
 #include "Table.h"
 #include "Shift.h"
+#include "Menu.h"
 
 class Restaurant
 {
@@ -23,22 +24,28 @@ private:
 	char *addres;
 	char *phone;
 	Manager restaurantManager;
+	Menu menu;
 	Employee** employees;
 	Table** tables; 
 	Shift** shifts;
+
 	int currentEmployees, currentShifts, currentTables;
 
 public:
-	Restaurant(char *name, char *adress, char *phone);
+	Restaurant(char *name, char *adress, char *phone, Menu menu);
 	void addEmployee(Employee& employee);
 	void removeEmployee(Employee& employee);
 	void addTable(Table& table);
 	void removeTable(Table& table);
 	void addShift(Shift& shift);
 
-	char* getName() const { return this->name; }
-	char* getAddress() const { return this->addres; }
-	char* getPhone() const { return this->phone; }
+
+	Shift& getCurrentShift();//returns the last shift in the shifts arr;
+	char* getName() const { return this->name; };
+	char* getAddress() const { return this->addres; };
+	char* getPhone() const { return this->phone; };
+	Menu getMenu() const { return this->menu; };
+	Manager getRestaurantManager() const { return this->restaurantManager; };
 	Employee** getEmployees() const { return this->employees; };
 	Table** getTables() const { return this->tables; };
 	Shift** getShifts() const { return this->shifts; };
@@ -48,6 +55,11 @@ public:
 	void setEmployees(Employee** employees);
 	void setTables(Table** tables);
 	void setShifts(Shift** shifts);
+
+	Waiter** getAllWaiters();
+	Cook** getAllCooks();
+	Hostess** getAllHostesses();
+	Manager** getAllManagers();
 
 	// Employee array operators
 	Restaurant& operator+=(const Employee& employee) const;

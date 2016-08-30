@@ -45,9 +45,6 @@
     <ClInclude Include="Waiter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bartender.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Chef.h">
       <Filter>Header Files</Filter>
     </ClInclude>

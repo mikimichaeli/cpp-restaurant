@@ -17,6 +17,7 @@ public:
 	void setPrive(int price);
 	void setName(char* name);
 	const Dish& operator=(const Dish& other);
+	friend ostream& operator<<(ostream& os, const Dish& dish);
 	~Dish();
 
 };

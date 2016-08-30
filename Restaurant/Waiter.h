@@ -14,10 +14,10 @@ class Waiter : public Employee
 public:
 	Waiter(const Employee& base);
 	virtual ostream& toOs(ostream& os) const override;
-	void takeOrder(const Table& table) const;
+	Order takeOrder(const Table& table) const;
 	void bringFood(const Table& table) const;
 	void bringBill(const Table& table) const;
-	void takeMoney(const Table& table) const;
+	int takeMoney(const Table& table) const;
 };
 
 #endif // !__WAITER_H

@@ -21,8 +21,8 @@ public:
 	const Dish& operator+=(const Dish& dish) throw (const char*);
 	// remove dish, throw error if no items
 	const Dish& operator-=(const Dish& dish) throw (const char*);
-
-	int getCapacity() const { return this->currentCapacity; }
+	Dish* getDishes() const { return this->dishes; };
+	int getCapacity() const { return this->currentCapacity; };
 
 };
 
