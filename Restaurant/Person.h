@@ -11,14 +11,13 @@ class Person
 	char *name;
 	char *addres;
 	char *phone;
-	int age;
 
 protected:
 	Person(const Person& other);
 	const Person& operator=(const Person& other);
 
 public:
-	Person(char *name, char *address, char *phone, int age);
+	Person(char *name, char *address, char *phone);
 	virtual ~Person();
 	virtual bool operator==(const Person& other);
 
