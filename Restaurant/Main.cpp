@@ -17,6 +17,7 @@ void addEmployeeToShift(const Restaurant& res);
 void takeNewReservation(const Restaurant& res);
 void handleATable(const Restaurant& res);
 Table *getTable();
+Shift *getNewShift(Restaurant& res);
 
 void main()
 {
@@ -81,13 +82,13 @@ void handleManagmentChoice(Restaurant& res)
 			res += *getTable();
 			break;
 		case 3:
-			// start new shift
+			res += *getNewShift(res);
 			break;
 		}
 	}
 }
 
-void startNewShift(Restaurant& res)
+Shift *getNewShift(Restaurant& res)
 {
 	char buffer[100], *date;
 	cout << " enter shift date -->";
@@ -106,7 +107,7 @@ void startNewShift(Restaurant& res)
 	
 	shift->setShiftManager(res.getRestaurantManager());
 
-	res += *shift;
+	return shift;
 }
 
 int generalRestaurantMenu()
