@@ -40,7 +40,7 @@ public:
 	void addShift(Shift& shift);
 
 
-	Shift& getCurrentShift();//returns the last shift in the shifts arr;
+	Shift& getCurrentShift() const;//returns the last shift in the shifts arr;
 	char* getName() const { return this->name; };
 	char* getAddress() const { return this->addres; };
 	char* getPhone() const { return this->phone; };

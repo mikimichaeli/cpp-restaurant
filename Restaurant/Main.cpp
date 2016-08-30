@@ -11,6 +11,9 @@ void handleATable(const Restaurant& res, const Waiter& waiter);
 int tableMenu();
 Employee *getEmployee();
 Person *getPerson();
+void handleManagmentChoice(Restaurant& res);
+void handleShiftChoice(const Restaurant& res, const Waiter& waiter);
+void addEmployeeToShift(const Restaurant& res);
 
 void main()
 {
@@ -162,8 +165,9 @@ int currentShiftMenu()
 	cin >> choice;
 	return choice;
 }
-void addEmployeeToShift(const Restaurant& res) {
-	Shift s = res.getCurrentShift;
+void addEmployeeToShift(const Restaurant& res)
+{
+	Shift& s = res.getCurrentShift();
 	Employee **employees = res.getEmployees();
 	int employeeNum;
 	for (int i = 0; i < res.getCurrentEmployeesAmount(); i++)
@@ -179,12 +183,12 @@ void addEmployeeToShift(const Restaurant& res) {
 
 void handleATable(const Restaurant& res, const Waiter& waiter)
 {
-	Shift shift = res.getCurrentShift;
+	Shift& shift = res.getCurrentShift();
 	cout << " Please choose which table you want to handle: " << endl;
 	Table **tables = res.getTables();
 	for (int i = 0; i < res.getCurrentTablesAmount(); i++)
 	{
-		if (tables[i]->getIsInUse) {
+		if (tables[i]->getIsInUse()) {
 			cout << i + 1 << ". " << *tables[i] << endl;
 		}
 	}
@@ -211,9 +215,9 @@ void handleATable(const Restaurant& res, const Waiter& waiter)
 				waiter.takeMoney(table);
 				break;
 			case 5:
-				menu = res.getMenu;
+				menu = res.getMenu();
 				cout << "Select a dish to indulge:" << endl;
-				for (int i = 0; i < menu.getCapacity; i++) {
+				for (int i = 0; i < menu.getCapacity(); i++) {
 					cout << i + 1 << ". " << menu[i] << endl;
 				}
 				cin >> action;
