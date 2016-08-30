@@ -32,7 +32,7 @@ private:
 	int currentEmployees, currentShifts, currentTables;
 
 public:
-	Restaurant(char *name, char *adress, char *phone, Menu menu);
+	Restaurant(char *name, char *adress, char *phone);
 	void addEmployee(Employee& employee);
 	void removeEmployee(Employee& employee);
 	void addTable(Table& table);

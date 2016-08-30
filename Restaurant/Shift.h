@@ -33,6 +33,11 @@ public:
 	const Shift& operator-=(Employee& e);
 	const Employee& operator[](int index);
 
+	Waiter** getAllWaiters();
+	Cook** getAllCooks();
+	Hostess** getAllHostesses();
+	Manager** getAllManagers();
+
 	// reservations array operator
 	const Shift& operator+=(Reservation& e);
 	const Shift& operator-=(Reservation& e);

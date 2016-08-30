@@ -17,22 +17,25 @@ void addEmployeeToShift(const Restaurant& res);
 
 void main()
 {
-	Menu restaurantMenu;
+	Restaurant* r = new Restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666");
+	Menu restaurantMenu = r->getMenu();
 	restaurantMenu += Dish("Soup",30);
 	restaurantMenu += Dish("Pasta");
 	restaurantMenu += Dish("Steak");
 	restaurantMenu += Dish("Chocolate Fudge",20);
-	Employee* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312", 35), 15000, 5));
-	Employee* shiftManager = new Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123", 35), 3500, 2));
-	Waiter* waiter1 = new Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112", 25), 5000, 0.5));
-	Waiter* waiter2 = new Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696", 25), 5000, 1.2));
+	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312", 35), 15000, 5));
 	Cook* cook1 = new Cook(*restaurantManager);
+	Chef* chef = new Chef(*cook1, *restaurantManager);
+	*r += *chef;
+	*r += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123", 35), 3500, 2));
+	*r += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112", 25), 5000, 0.5));
+	Waiter* waiter2 = new Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696", 25), 5000, 1.2));
+
 	Cook* cook2 = new Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981", 39), 3500, 2));
 	Hostess* hostess1 = new Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121", 35), 3500, 2));
-	Chef* chef = new Chef(*cook1, *restaurantManager);
 	Table* tables = new Table[10];
 	Employee* allEmployees[] = {restaurantManager, shiftManager, waiter1, waiter2, cook1, cook2, hostess1, chef};
-	Restaurant* r = new Restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666", restaurantMenu);
+
 	
 	r->setEmployees(allEmployees);
 	r->setTables(&tables);
