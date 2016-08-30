@@ -14,6 +14,7 @@ class Shift
 	Reservation* reservations;
 public:
 	Shift(char *date);
+	// the copy c'tor should copy all values except the date.
 	Shift(const Shift& other);
 	const Shift& operator=(const Shift& other);
 	~Shift();
@@ -23,7 +24,7 @@ public:
 	char* getDate() {return this->date;};
 	void setDate(char* date);
 	Manager* getShiftManager() { return this->shiftManager; };
-	void setShiftManager(Manager manager);
+	void setShiftManager(const Manager& manager);
 	Employee** getEmployees() {	return this->employees; };
 	Reservation* getReservations() { return this->reservations; };
 
