@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void main();
+void initRestaurant(Restaurant& restaurant);
 int mainMenu();
 int generalRestaurantMenu();
 int currentShiftMenu();
@@ -16,25 +16,12 @@ void handleShiftChoice(const Restaurant& res);
 void addEmployeeToShift(const Restaurant& res);
 void takeNewReservation(const Restaurant& res);
 void handleATable(const Restaurant& res);
+Table *getTable();
 
 void main()
 {
-	Restaurant* restaurant = new Restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666");
-	Menu restaurantMenu = restaurant->getMenu();
-	restaurantMenu += Dish("Soup",30);
-	restaurantMenu += Dish("Pasta");
-	restaurantMenu += Dish("Steak");
-	restaurantMenu += Dish("Chocolate Fudge",20);
-	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312"), 15000, 5));
-	Cook* cook1 = new Cook(*restaurantManager);
-	Chef* chef = new Chef(*cook1, *restaurantManager);
-	*restaurant += *chef;
-	*restaurant += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123"), 3500, 2));
-	*restaurant += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112"), 5000, 0.5));
-	*restaurant += Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696"), 5000, 1.2));
-	*restaurant += Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981"), 3500,2));
-	*restaurant += Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121"), 3500, 2));
-
+	Restaurant restaurant("Kalifa", "Mivtza Kadesh 38 Tel-Aviv", "03-6666666");
+	initRestaurant(restaurant);
 	int choice = 0;
 	while(choice!=3)
 	{
@@ -42,13 +29,29 @@ void main()
 		switch (choice)
 		{
 		case 1:
-			handleManagmentChoice(*restaurant);
+			handleManagmentChoice(restaurant);
 			break;
 		case 2:
-			handleShiftChoice(*restaurant);
+			handleShiftChoice(restaurant);
 			break;
 		}
 	}
+}
+void initRestaurant(Restaurant& restaurant) {
+	Menu restaurantMenu = restaurant.getMenu();
+	restaurantMenu += Dish("Soup", 30);
+	restaurantMenu += Dish("Pasta");
+	restaurantMenu += Dish("Steak");
+	restaurantMenu += Dish("Chocolate Fudge", 20);
+	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312"), 15000, 5));
+	Cook* cook1 = new Cook(*restaurantManager);
+	Chef* chef = new Chef(*cook1, *restaurantManager);
+	restaurant += *chef;
+	restaurant += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123"), 3500, 2));
+	restaurant += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112"), 5000, 0.5));
+	restaurant += Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696"), 5000, 1.2));
+	restaurant += Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981"), 3500, 2));
+	restaurant += Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121"), 3500, 2));
 }
 
 int mainMenu()
@@ -66,18 +69,16 @@ int mainMenu()
 void handleManagmentChoice(Restaurant& res)
 {
 	int generalManagmentChoice = generalRestaurantMenu();
-	Employee* employee;
 	int choice = 0;
 	while (choice != 4)
 	{
 		switch (generalManagmentChoice)
 		{
 		case 1:
-			employee = getEmployee();
-			res += *employee;
+			res += *getEmployee();
 			break;
 		case 2:
-			
+			res += *getTable();
 			break;
 		case 3:
 			// start new shift
@@ -148,6 +149,21 @@ Person *getPerson()
 	Person *p = new Person(name, address, phone);
 
 	return p;
+}
+
+Table *getTable()
+{
+	int size;
+	int area;
+	cout << " Enter table size:" << endl;
+	cin >> size;
+	cout << " Choose table area:" << endl;
+	cout << Area::Inside << ". Inside" << endl;
+	cout << Area::Outside << ". Outside" << endl;
+	cin >> area;
+
+	Table* t = new Table(size, (Area)area);
+	return t;
 }
 
 int currentShiftMenu()
