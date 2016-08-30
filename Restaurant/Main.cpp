@@ -7,7 +7,7 @@ void main();
 int mainMenu();
 int generalRestaurantMenu();
 int currentShiftMenu();
-void handleATable(const Restaurant& res, const Waiter& waiter);
+void handleATable(const Restaurant& res);
 int tableMenu();
 Employee *getEmployee();
 Person *getPerson();
@@ -25,15 +25,15 @@ void main()
 	restaurantMenu += Dish("Pasta");
 	restaurantMenu += Dish("Steak");
 	restaurantMenu += Dish("Chocolate Fudge",20);
-	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312", 35), 15000, 5));
+	Manager* restaurantManager = new Manager(Employee(Person("Gogo Karovlakir", "HaYeoosh 15 Tel-Aviv", "052-3828312"), 15000, 5));
 	Cook* cook1 = new Cook(*restaurantManager);
 	Chef* chef = new Chef(*cook1, *restaurantManager);
 	*restaurant += *chef;
-	*restaurant += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123", 35), 3500, 2));
-	*restaurant += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112", 25), 5000, 0.5));
-	*restaurant += Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696", 25), 5000, 1.2));
-	*restaurant += Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981", 39), 3500, 2));
-	*restaurant += Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121", 35), 3500, 2));
+	*restaurant += Manager(Employee(Person("Haled Haled", "AniLo MaaminShe AnigarBe 1 Petach-Tikva", "054-0000123"), 3500, 2));
+	*restaurant += Waiter(Employee(Person("Momo Eskimolimon", "Arlozorov 33 Tel-Aviv", "050-1231112"), 5000, 0.5));
+	*restaurant += Waiter(Employee(Person("David Hameleh", "Dizengoff 131 Tel-Aviv", "054-6969696"), 5000, 1.2));
+	*restaurant += Cook(Employee(Person("Moshe Levi", "Bazel 23 Tel-Aviv", "052-9800981"), 3500,2));
+	*restaurant += Hostess(Employee(Person("Yafit Bar-Zohar", "Bugrashov 41 Tel-Aviv", "054-1212121"), 3500, 2));
 
 	int choice = 0;
 	while(choice!=3)
@@ -144,11 +144,8 @@ Person *getPerson()
 	fflush(stdout);
 	cin >> buffer;
 	phone = strdup(buffer);
-
-	cout << "\n what is the person's age? -->";
-	cin >> age;
 	
-	Person *p = new Person(name, address, phone, age);
+	Person *p = new Person(name, address, phone);
 
 	return p;
 }
@@ -164,9 +161,10 @@ int currentShiftMenu()
 	cin >> choice;
 	return choice;
 }
-void takeNewReservation(const Restaurant& res)
-{
-
+void takeNewReservation(const Restaurant& res) {
+	Shift& s = res.getCurrentShift();
+	Reservation r = s.getAllHostesses()[0]->takeReservation(*getPerson());
+	s.addReservation(r);
 }
 void addEmployeeToShift(const Restaurant& res)
 {

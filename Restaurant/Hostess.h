@@ -11,7 +11,7 @@ class Hostess : public Employee
 public:
 	Hostess(const Employee& base);
 	virtual ostream& toOs(ostream& os) const override;
-	Reservation takeReservation() const;
+	Reservation takeReservation(const Person& person) const;
 	void assignTable(const Reservation& reservation) const;
 
 };
